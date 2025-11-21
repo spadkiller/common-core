@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 11:10:53 by gujarry           #+#    #+#             */
-/*   Updated: 2025/11/21 13:11:56 by gujarry          ###   ########.fr       */
+/*   Updated: 2025/11/21 15:29:47 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@ char	*read_and_stock(int fd, char *stock)
 	byte_read = 1;
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
-		return (NULL);
-	if (!stock)
-		return (NULL);
+		return (free(stock), NULL);
 	while (byte_read > 0)
 	{
-		byte_read = read(fd, buffer, (BUFFER_SIZE));
+		byte_read = read(fd, buffer, BUFFER_SIZE);
 		if (byte_read == -1)
-			return (free(buffer),free(stock),NULL);
+			return (free(buffer), free(stock), NULL);
 		if (byte_read == 0)
 			break ;
 		buffer[byte_read] = '\0';
 		stock = ft_strjoin(stock, buffer);
+		if (!stock)
+			return (free(buffer), NULL);
 		if (ft_strchr(stock, '\n'))
-			break;
+			break ;
 	}
 	return (free(buffer), stock);
 }
@@ -69,7 +69,9 @@ char	*save_rest(char *stock)
 	i = 0;
 	while (stock[i] && stock[i] != '\n')
 		i++;
-	new_stock = malloc(sizeof(char) * ft_strlen(stock) - i + 1);
+	if (!stock[i])
+		return (free(stock), NULL);
+	new_stock = malloc(sizeof(char) * (ft_strlen(stock) - i + 1));
 	if (!new_stock)
 		return (NULL);
 	i++;
