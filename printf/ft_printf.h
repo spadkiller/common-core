@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:11:02 by gujarry           #+#    #+#             */
-/*   Updated: 2025/12/02 12:02:14 by gujarry          ###   ########.fr       */
+/*   Updated: 2025/12/02 14:59:14 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@
 # include <stdarg.h>
 # include <unistd.h>
 
-int			ft_putchar(char c);
-int			ft_putnbr_unsigned(unsigned int n);
-int			ft_puthex(unsigned long n, char format);
-void		ft_putptr(void *ptr);
-int			ft_putstr(char *s);
-int			ft_putnbr(int n);
-int			ft_printf(const char *format);
-static int	ft_handle_format(char specifier, va_list args);
+int	ft_putchar(char c);
+int	ft_putnbr_unsigned(unsigned int n);
+int	ft_puthex(unsigned long n, char format);
+int	ft_putptr(void *ptr);
+int	ft_putstr(char *s);
+int	ft_putnbr(int n);
+int	ft_printf(const char *format, ...);
 
 #endif
