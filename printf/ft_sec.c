@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_sec.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 15:54:02 by gujarry           #+#    #+#             */
-/*   Updated: 2025/12/02 12:04:50 by gujarry          ###   ########.fr       */
+/*   Created: 2025/12/02 11:49:43 by gujarry           #+#    #+#             */
+/*   Updated: 2025/12/02 11:53:37 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf(const char *format)
+int     ft_putstr(char *s)
 {
-    va_list args;
-    int     i;
-    int     count;
+    int i;
 
-    va_start(args, format);
     i = 0;
-    count = 0;
-    while (format[i])
+    while (s[i])
     {
-        if (format[i] == '%')
-        {
-            i++;
-            count += ft_handle_format(format[i], args);
-        }
-        else
-            count += ft_putchar(format[i]);
+        write (1, &s[i], 1);
         i++;
     }
-    va_end(args);
-    return (count);
+}
+int     ft_putnbr(int n)
+{
+    long int	i;
+
+	i = n;
+	if (i < 0)
+	{
+		ft_putchar('-');
+		i = -i;
+	}
+	if (i >= 10)
+	{
+		ft_putnbr(i / 10);
+	}
+	ft_putchar(i % 10 + '0');
 }

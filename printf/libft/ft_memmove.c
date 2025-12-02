@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 15:11:02 by gujarry           #+#    #+#             */
-/*   Updated: 2025/12/02 12:02:14 by gujarry          ###   ########.fr       */
+/*   Created: 2025/11/05 14:43:23 by gujarry           #+#    #+#             */
+/*   Updated: 2025/11/11 11:05:09 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stdarg.h>
-# include <unistd.h>
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	unsigned char		*d;
+	const unsigned char	*s;
+	size_t				i;
 
-int			ft_putchar(char c);
-int			ft_putnbr_unsigned(unsigned int n);
-int			ft_puthex(unsigned long n, char format);
-void		ft_putptr(void *ptr);
-int			ft_putstr(char *s);
-int			ft_putnbr(int n);
-int			ft_printf(const char *format);
-static int	ft_handle_format(char specifier, va_list args);
-
-#endif
+	if (!src && !dest)
+		return (NULL);
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	while (n > 0 && d > s)
+	{
+		n--;
+		d[n] = s[n];
+	}
+	i = 0;
+	while (i < n && d <= s)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	return (dest);
+}

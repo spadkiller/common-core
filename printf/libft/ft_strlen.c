@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 15:11:02 by gujarry           #+#    #+#             */
-/*   Updated: 2025/12/02 12:02:14 by gujarry          ###   ########.fr       */
+/*   Created: 2025/11/04 15:05:00 by gujarry           #+#    #+#             */
+/*   Updated: 2025/11/13 09:55:32 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stdarg.h>
-# include <unistd.h>
+size_t	ft_strlen(const char *str)
+{
+	int	i;
 
-int			ft_putchar(char c);
-int			ft_putnbr_unsigned(unsigned int n);
-int			ft_puthex(unsigned long n, char format);
-void		ft_putptr(void *ptr);
-int			ft_putstr(char *s);
-int			ft_putnbr(int n);
-int			ft_printf(const char *format);
-static int	ft_handle_format(char specifier, va_list args);
-
-#endif
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}

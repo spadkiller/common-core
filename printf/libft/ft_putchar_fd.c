@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 15:11:02 by gujarry           #+#    #+#             */
-/*   Updated: 2025/12/02 12:02:14 by gujarry          ###   ########.fr       */
+/*   Created: 2025/11/10 10:35:52 by gujarry           #+#    #+#             */
+/*   Updated: 2025/11/14 12:49:58 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stdarg.h>
-# include <unistd.h>
-
-int			ft_putchar(char c);
-int			ft_putnbr_unsigned(unsigned int n);
-int			ft_puthex(unsigned long n, char format);
-void		ft_putptr(void *ptr);
-int			ft_putstr(char *s);
-int			ft_putnbr(int n);
-int			ft_printf(const char *format);
-static int	ft_handle_format(char specifier, va_list args);
-
-#endif
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
