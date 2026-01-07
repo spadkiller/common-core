@@ -1,0 +1,61 @@
+# Born2beroot
+
+## 📌 Description
+Born2beroot est un projet d’administration système dont l’objectif est
+de découvrir la virtualisation et de configurer un serveur Linux
+en respectant des règles strictes de sécurité.
+
+Le projet est réalisé sur une machine virtuelle avec **Debian** (ou Rocky Linux),
+sans interface graphique.
+
+## 🖥️ Environnement
+- OS : Debian (stable)
+- Virtualisation : VirtualBox
+- Accès : SSH
+- Interface graphique : ❌ aucune
+
+## 👤 Utilisateurs et groupes
+- Un utilisateur principal est créé
+- L’utilisateur appartient aux groupes :
+  - sudo
+  - user42 (si applicable)
+
+## 🔐 Configuration sudo
+- Accès sudo restreint
+- Mot de passe requis
+- Tentatives limitées
+- Log des commandes sudo activé
+- Chemin sécurisé (`secure_path`)
+
+## 🔑 Politique de mot de passe
+- Longueur minimale : 10 caractères
+- Expiration : 30 jours
+- Délai minimum avant changement : 2 jours
+- Avertissement avant expiration : 7 jours
+- Doit contenir :
+  - Majuscules
+  - Minuscules
+  - Chiffres
+- Ne peut pas contenir le nom de l’utilisateur
+- Limite de répétitions de caractères
+
+## 🔒 Sécurité
+- Pare-feu configuré avec **UFW**
+- Seul le port **4242** est ouvert
+- Connexion SSH avec l’utilisateur root désactivée
+- Connexion SSH via port personnalisé
+
+## ⏱️ Monitoring (cron)
+Un script de monitoring est exécuté toutes les 10 minutes et affiche :
+- Architecture du système
+- Version du kernel
+- Nombre de processeurs physiques et virtuels
+- Utilisation de la RAM
+- Utilisation du disque
+- Charge CPU
+- Dernier redémarrage
+- Utilisation de LVM
+- Nombre de connexions actives
+- Nombre d’utilisateurs connectés
+- Adresse IP et MAC
+- Nombre de commandes exécutées avec sudo
