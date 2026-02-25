@@ -6,12 +6,12 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:47:13 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/23 15:51:26 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/25 14:54:38 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_CHECKER_H
-# define MAP_CHECKER_H
+#ifndef ALL_H
+# define ALL_H
 
 # include "map_checker/map_checker.h"
 # include "minilibx-linux/mlx.h"
