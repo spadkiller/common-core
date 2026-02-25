@@ -6,32 +6,28 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 15:44:26 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/19 16:57:17 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/25 15:25:13 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+static void	putstr_fd(const char *s, int fd)
 {
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	size_t	i = 0;
+	if (!s) return;
+	while (s[i]) { write(fd, &s[i], 1); i++; }
 }
 
 int	main(int argc, char **argv)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
+	t_map	map;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								&img.endian);
-	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	if (argc != 2)
+		return (putstr_fd("Usage: ./so_long map.ber\n", 2), 1);
+	if (map_check(&map, argv[1]) != 0)
+		return (putstr_fd("Error\nInvalid map\n", 2), 1);
+	putstr_fd("OK\n", 1);
+	map_free(&map);
+	return (0);
 }

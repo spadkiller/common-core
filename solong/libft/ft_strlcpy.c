@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_free.c                                         :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 14:57:31 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/25 15:25:41 by gujarry          ###   ########.fr       */
+/*   Created: 2025/11/05 14:39:18 by gujarry           #+#    #+#             */
+/*   Updated: 2025/11/13 09:55:28 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_checker.h"
+#include "libft.h"
 
-void	map_free(t_map *map)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	int	i;
+	size_t	i;
+	size_t	len;
 
-	if (!map)
-		return ;
-	if (map->grid)
+	len = 0;
+	while (src[len] != '\0')
+		len++;
+	i = 0;
+	if (size > 0)
 	{
-		i = 0;
-		while (map->grid[i])
+		while (src[i] != '\0' && i < (size - 1))
 		{
-			free(map->grid[i]);
+			dest[i] = src[i];
 			i++;
 		}
-		free(map->grid);
+		dest[i] = '\0';
 	}
-	map->grid = NULL;
+	return (len);
 }

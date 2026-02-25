@@ -6,7 +6,99 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:56:44 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/25 14:56:45 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/25 15:28:02 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "map_checker.h"
+
+static char	*dup_trim_nl(const char *line)
+{
+	size_t	len;
+	char	*dst;
+	size_t	i;
+
+	if (!line)
+		return (NULL);
+	len = ft_strlen(line);
+	if (len > 0 && line[len - 1] == '\n')
+		len--;
+	dst = (char *)malloc(len + 1);
+	if (!dst)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		dst[i] = line[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
+}
+
+static int	grid_push(char ***grid, int *size, char *new_line)
+{
+	char	**new_grid;
+	int		i;
+
+	new_grid = (char **)malloc(sizeof(char *) * (*size + 2));
+	if (!new_grid)
+		return (free(new_line), 1);
+	i = 0;
+	while (i < *size)
+	{
+		new_grid[i] = (*grid)[i];
+		i++;
+	}
+	new_grid[i++] = new_line;
+	new_grid[i] = NULL;
+	free(*grid);
+	*grid = new_grid;
+	(*size)++;
+	return (0);
+}
+
+static void	map_init(t_map *map)
+{
+	map->grid = NULL;
+	map->width = 0;
+	map->height = 0;
+	map->player_count = 0;
+	map->exit_count = 0;
+	map->collec_count = 0;
+}
+
+int	map_load(t_map *map, const char *path)
+{
+	int		fd;
+	char	*line;
+	char	*trim;
+	int		h;
+
+	if (!map || !path)
+		return (1);
+	map_init(map);
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		return (perror("Error\nopen"), 1);
+	h = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		trim = dup_trim_nl(line);
+		free(line);
+		if (!trim)
+			return (close(fd), map_free(map), 1);
+		if (trim[0] == '\0')
+			return (free(trim), close(fd), map_free(map), 1);
+		if (grid_push(&map->grid, &h, trim) != 0)
+			return (close(fd), map_free(map), 1);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	map->height = h;
+	if (map->height == 0)
+		return (map_free(map), 1);
+	map->width = (int)ft_strlen(map->grid[0]);
+	return (0);
+}

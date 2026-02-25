@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_free.c                                         :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 14:57:31 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/25 15:25:41 by gujarry          ###   ########.fr       */
+/*   Created: 2025/11/10 11:43:41 by gujarry           #+#    #+#             */
+/*   Updated: 2025/11/14 12:50:06 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_checker.h"
+#include "libft.h"
 
-void	map_free(t_map *map)
+void	ft_putendl_fd(char *s, int fd)
 {
-	int	i;
-
-	if (!map)
+	if (!s)
 		return ;
-	if (map->grid)
-	{
-		i = 0;
-		while (map->grid[i])
-		{
-			free(map->grid[i]);
-			i++;
-		}
-		free(map->grid);
-	}
-	map->grid = NULL;
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n", 1);
 }

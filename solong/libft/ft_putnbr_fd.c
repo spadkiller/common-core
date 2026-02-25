@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_free.c                                         :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 14:57:31 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/25 15:25:41 by gujarry          ###   ########.fr       */
+/*   Created: 2025/11/10 11:07:15 by gujarry           #+#    #+#             */
+/*   Updated: 2025/11/14 12:50:11 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_checker.h"
+#include "libft.h"
 
-void	map_free(t_map *map)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	i;
+	long int	i;
 
-	if (!map)
-		return ;
-	if (map->grid)
+	i = n;
+	if (i < 0)
 	{
-		i = 0;
-		while (map->grid[i])
-		{
-			free(map->grid[i]);
-			i++;
-		}
-		free(map->grid);
+		ft_putchar_fd('-', fd);
+		i = -i;
 	}
-	map->grid = NULL;
+	if (i >= 10)
+	{
+		ft_putnbr_fd(i / 10, fd);
+	}
+	ft_putchar_fd(i % 10 + '0', fd);
 }

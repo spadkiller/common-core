@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_free.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 14:57:31 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/25 15:25:41 by gujarry          ###   ########.fr       */
+/*   Created: 2025/11/07 15:13:54 by gujarry           #+#    #+#             */
+/*   Updated: 2025/11/14 12:50:22 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_checker.h"
+#include "libft.h"
 
-void	map_free(t_map *map)
+char	*ft_strdup(const char *s)
 {
-	int	i;
+	int		i;
+	int		j;
+	char	*dup;
 
-	if (!map)
-		return ;
-	if (map->grid)
+	i = ft_strlen(s);
+	j = 0;
+	dup = malloc((i + 1) * sizeof(char));
+	if (!dup)
+		return (NULL);
+	while (j <= i)
 	{
-		i = 0;
-		while (map->grid[i])
-		{
-			free(map->grid[i]);
-			i++;
-		}
-		free(map->grid);
+		dup[j] = s[j];
+		j++;
 	}
-	map->grid = NULL;
+	dup[j] = '\0';
+	return (dup);
 }

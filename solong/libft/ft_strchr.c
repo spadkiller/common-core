@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_free.c                                         :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 14:57:31 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/25 15:25:41 by gujarry          ###   ########.fr       */
+/*   Created: 2025/11/05 16:27:42 by gujarry           #+#    #+#             */
+/*   Updated: 2025/11/13 14:02:54 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_checker.h"
+#include "libft.h"
 
-void	map_free(t_map *map)
+char	*ft_strchr(const char *string, int searchedChar)
 {
-	int	i;
+	size_t			i;
+	unsigned char	c;
 
-	if (!map)
-		return ;
-	if (map->grid)
+	i = 0;
+	c = (unsigned char)searchedChar;
+	while (i <= ft_strlen(string))
 	{
-		i = 0;
-		while (map->grid[i])
-		{
-			free(map->grid[i]);
-			i++;
-		}
-		free(map->grid);
+		if ((unsigned char)string[i] == c)
+			return ((char *)&string[i]);
+		i++;
 	}
-	map->grid = NULL;
+	return (NULL);
 }
