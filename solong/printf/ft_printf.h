@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_free.c                                         :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 14:57:31 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 20:03:34 by gujarry          ###   ########.fr       */
+/*   Created: 2025/11/24 15:11:02 by gujarry           #+#    #+#             */
+/*   Updated: 2025/12/02 14:59:14 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../all.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-void	map_free(t_map *map)
-{
-	int	i;
+# include "../libft/libft.h"
+# include <stdarg.h>
+# include <unistd.h>
 
-	if (!map)
-		return ;
-	if (map->grid)
-	{
-		i = 0;
-		while (map->grid[i])
-		{
-			free(map->grid[i]);
-			i++;
-		}
-		free(map->grid);
-	}
-	map->grid = NULL;
-}
+int	ft_putchar(char c);
+int	ft_putnbr_unsigned(unsigned int n);
+int	ft_puthex(unsigned long n, char format);
+int	ft_putptr(void *ptr);
+int	ft_putstr(char *s);
+int	ft_putnbr(int n);
+int	ft_printf(const char *format, ...);
+
+#endif

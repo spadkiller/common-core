@@ -6,11 +6,11 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 15:45:16 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/25 15:40:45 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/26 20:03:17 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_checker.h"
+#include "../all.h"
 
 int	map_check(t_map *map, const char *path)
 {

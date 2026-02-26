@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 11:16:51 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 19:10:26 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/26 19:29:19 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+char	*get_next_line(int fd);
 char	*gnl_strjoin(char *s1, char *s2);
 char	*gnl_strchr(const char *str, char c);
 size_t	gnl_strlen(char *str);

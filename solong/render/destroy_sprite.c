@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_free.c                                         :+:      :+:    :+:   */
+/*   destroy_sprite.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 14:57:31 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 20:03:34 by gujarry          ###   ########.fr       */
+/*   Created: 2026/02/26 19:59:21 by gujarry           #+#    #+#             */
+/*   Updated: 2026/02/26 20:06:06 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../all.h"
 
-void	map_free(t_map *map)
+static void	destroy_one(t_game *g, t_img *img)
 {
-	int	i;
+	if (img->ptr)
+		mlx_destroy_image(g->mlx, img->ptr);
+	img->ptr = NULL;
+}
 
-	if (!map)
-		return ;
-	if (map->grid)
-	{
-		i = 0;
-		while (map->grid[i])
-		{
-			free(map->grid[i]);
-			i++;
-		}
-		free(map->grid);
-	}
-	map->grid = NULL;
+void	destroy_sprites(t_game *g)
+{
+	destroy_one(g, &g->sp.floor);
+	destroy_one(g, &g->sp.wall);
+	destroy_one(g, &g->sp.player);
+	destroy_one(g, &g->sp.exit);
+	destroy_one(g, &g->sp.collect);
 }

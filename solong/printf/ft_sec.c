@@ -1,25 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.h                                      :+:      :+:    :+:   */
+/*   ft_sec.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/19 15:45:38 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 19:18:07 by gujarry          ###   ########.fr       */
+/*   Created: 2025/12/02 11:49:43 by gujarry           #+#    #+#             */
+/*   Updated: 2025/12/02 14:58:05 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_CHECKER_H
-# define MAP_CHECKER_H
+#include "ft_printf.h"
 
-# include "../all.h"
-# include "../get_next_line/get_next_line.h"
+int	ft_putstr(char *s)
+{
+	int	i;
 
-int		map_load(t_map *map, const char *path);
-int		map_validate(t_map *map);
-int		map_check(t_map *map, const char *path);
-void	map_free(t_map *map);
-int		map_check_path(t_map *map);
+	if (s == NULL)
+		return (write(1, "(null)", 6));
+	i = 0;
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	return (i);
+}
 
-#endif
+int	ft_putnbr(int n)
+{
+	long int	i;
+	int			count;
+
+	i = n;
+	count = 0;
+	if (i < 0)
+	{
+		count += ft_putchar('-');
+		i = -i;
+	}
+	if (i >= 10)
+		count += ft_putnbr(i / 10);
+	count += ft_putchar(i % 10 + '0');
+	return (count);
+}

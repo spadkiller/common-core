@@ -6,11 +6,11 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:57:15 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/25 15:40:25 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/26 20:03:56 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_checker.h"
+#include "../all.h"
 
 static void	free_grid_copy(char **g)
 {

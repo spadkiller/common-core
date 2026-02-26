@@ -6,11 +6,12 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:56:44 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 19:22:33 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/26 20:03:46 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_checker.h"
+#include "../all.h"
+#include "../get_next_line/get_next_line.h"
 
 static void	map_init(t_map *map)
 {
@@ -70,7 +71,7 @@ int	map_load(t_map *map, const char *path)
 	if (fd < 0)
 		return (perror("Error\nopen"), 1);
 	h = 0;
-	line = ft_get_line(fd);
+	line = get_next_line(fd);
 	while (line)
 	{
 		trim_nl(line);
@@ -82,7 +83,7 @@ int	map_load(t_map *map, const char *path)
 			return (close(fd), map_free(map), 1);
 		if (grid_push(&map->grid, &h, dup) != 0)
 			return (close(fd), map_free(map), 1);
-		line = ft_get_line(fd);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	map->height = h;

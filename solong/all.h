@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:47:13 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 19:20:43 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/26 21:24:21 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,45 @@ typedef struct s_map
 	int		exit_count;
 	int		collec_count;
 }			t_map;
+
+typedef struct s_img
+{
+	void	*ptr;
+	int		w;
+	int		h;
+}	t_img;
+
+typedef struct s_sprites
+{
+	t_img	floor;
+	t_img	wall;
+	t_img	player;
+	t_img	exit;
+	t_img	collect;
+}	t_sprites;
+
+typedef struct s_game
+{
+	void		*mlx;
+	void		*win;
+	int			tile;
+	int			moves;
+	t_pos		player_pos;
+	t_map		map;
+	t_sprites	sp;
+}	t_game;
+
+//map checker
+int		map_load(t_map *map, const char *path);
+int		map_validate(t_map *map);
+int		map_check(t_map *map, const char *path);
+void	map_free(t_map *map);
+int		map_check_path(t_map *map);
+//render
+int		load_sprites(t_game *g);
+void	draw_map(t_game *g);
+void	destroy_sprites(t_game *g);
+//input
+int	handle_key(int keycode, t_game *g);
 
 #endif
