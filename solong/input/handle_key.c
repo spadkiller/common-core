@@ -6,11 +6,11 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:27:17 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 21:05:51 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/26 21:33:22 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../all.h"
+#include "../printf/ft_printf.h"
 
 static int	count_collect_left(t_game *g)
 {

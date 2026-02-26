@@ -6,12 +6,12 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:56:44 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 20:03:46 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/26 21:32:33 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../all.h"
 #include "../get_next_line/get_next_line.h"
+#include "../libft/libft.h"
 
 static void	map_init(t_map *map)
 {

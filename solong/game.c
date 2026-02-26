@@ -6,13 +6,15 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:06:58 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 21:23:53 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/26 21:31:47 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
+#include "map_checker/map_checker.h"
+#include "render/render.h"
+#include "input/input.h"
 #include "libft/libft.h"
-#include "printf/ft_printf.h"
 
 static void	find_player(t_game *g)
 {
