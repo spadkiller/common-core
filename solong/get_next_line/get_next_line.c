@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 11:10:53 by gujarry           #+#    #+#             */
-/*   Updated: 2025/11/21 15:29:47 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/26 19:13:03 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ char	*read_and_stock(int fd, char *stock)
 		if (byte_read == 0)
 			break ;
 		buffer[byte_read] = '\0';
-		stock = ft_strjoin(stock, buffer);
+		stock = gnl_strjoin(stock, buffer);
 		if (!stock)
 			return (free(buffer), NULL);
-		if (ft_strchr(stock, '\n'))
+		if (gnl_strchr(stock, '\n'))
 			break ;
 	}
 	return (free(buffer), stock);
@@ -71,7 +71,7 @@ char	*save_rest(char *stock)
 		i++;
 	if (!stock[i])
 		return (free(stock), NULL);
-	new_stock = malloc(sizeof(char) * (ft_strlen(stock) - i + 1));
+	new_stock = malloc(sizeof(char) * (gnl_strlen(stock) - i + 1));
 	if (!new_stock)
 		return (NULL);
 	i++;

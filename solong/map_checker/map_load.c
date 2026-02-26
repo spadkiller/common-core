@@ -6,34 +6,32 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:56:44 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/25 15:28:02 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/26 19:22:33 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_checker.h"
 
-static char	*dup_trim_nl(const char *line)
+static void	map_init(t_map *map)
+{
+	map->grid = NULL;
+	map->width = 0;
+	map->height = 0;
+	map->player_count = 0;
+	map->exit_count = 0;
+	map->collec_count = 0;
+}
+
+static char	*trim_nl(char *line)
 {
 	size_t	len;
-	char	*dst;
-	size_t	i;
 
 	if (!line)
 		return (NULL);
 	len = ft_strlen(line);
 	if (len > 0 && line[len - 1] == '\n')
-		len--;
-	dst = (char *)malloc(len + 1);
-	if (!dst)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		dst[i] = line[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
+		line[len - 1] = '\0';
+	return (line);
 }
 
 static int	grid_push(char ***grid, int *size, char *new_line)
@@ -58,21 +56,11 @@ static int	grid_push(char ***grid, int *size, char *new_line)
 	return (0);
 }
 
-static void	map_init(t_map *map)
-{
-	map->grid = NULL;
-	map->width = 0;
-	map->height = 0;
-	map->player_count = 0;
-	map->exit_count = 0;
-	map->collec_count = 0;
-}
-
 int	map_load(t_map *map, const char *path)
 {
 	int		fd;
 	char	*line;
-	char	*trim;
+	char	*dup;
 	int		h;
 
 	if (!map || !path)
@@ -82,18 +70,19 @@ int	map_load(t_map *map, const char *path)
 	if (fd < 0)
 		return (perror("Error\nopen"), 1);
 	h = 0;
-	line = get_next_line(fd);
+	line = ft_get_line(fd);
 	while (line)
 	{
-		trim = dup_trim_nl(line);
+		trim_nl(line);
+		if (line[0] == '\0')
+			return (free(line), close(fd), map_free(map), 1);
+		dup = ft_strdup(line);
 		free(line);
-		if (!trim)
+		if (!dup)
 			return (close(fd), map_free(map), 1);
-		if (trim[0] == '\0')
-			return (free(trim), close(fd), map_free(map), 1);
-		if (grid_push(&map->grid, &h, trim) != 0)
+		if (grid_push(&map->grid, &h, dup) != 0)
 			return (close(fd), map_free(map), 1);
-		line = get_next_line(fd);
+		line = ft_get_line(fd);
 	}
 	close(fd);
 	map->height = h;

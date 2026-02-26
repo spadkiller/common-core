@@ -6,13 +6,13 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 16:31:11 by gujarry           #+#    #+#             */
-/*   Updated: 2025/11/21 12:58:39 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/26 19:12:18 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *str)
+size_t	gnl_strlen(char *str)
 {
 	size_t	i;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strchr(const char *str, char c)
+char	*gnl_strchr(const char *str, char c)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ char	*ft_strchr(const char *str, char c)
 	if (!str)
 		return (NULL);
 	if (c == '\0')
-		return ((char *)&str[ft_strlen((char *)str)]);
+		return ((char *)&str[gnl_strlen((char *)str)]);
 	while (str[i])
 	{
 		if (str[i] == (char)c)
@@ -42,7 +42,7 @@ char	*ft_strchr(const char *str, char c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*gnl_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	size_t	i;
@@ -57,10 +57,10 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	if (!s2)
 		return (NULL);
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	str = malloc(sizeof(char) * (gnl_strlen(s1) + gnl_strlen(s2) + 1));
 	if (!str)
 		return (NULL);
-	i = -1;
+	i = (size_t)-1;
 	while (s1[++i])
 		str[i] = s1[i];
 	j = 0;

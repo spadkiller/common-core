@@ -6,17 +6,15 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:47:13 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/25 15:18:57 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/26 19:20:43 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ALL_H
 # define ALL_H
 
-# include "get_next_line/get_next_line.h"
-# include "libft/libft.h"
-# include "map_checker/map_checker.h"
 # include "minilibx-linux/mlx.h"
+#include "../libft/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
