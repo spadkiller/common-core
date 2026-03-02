@@ -6,15 +6,15 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:47:13 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 21:33:41 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/26 21:52:54 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ALL_H
 # define ALL_H
 
+# include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
-#include "../libft/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -47,65 +47,65 @@
 # define DIR_LEFT 2
 # define DIR_RIGHT 3
 
-typedef struct s_data
+/*typedef struct s_data
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_data;
-
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_data;
+*/
 typedef struct s_pos
 {
-	int		x;
-	int		y;
-}			t_pos;
+	int			x;
+	int			y;
+}				t_pos;
 
-typedef struct s_player
+/*typedef struct s_player
 {
-	t_pos	player_pos;
-	int		direction;
-	t_pos	next_pos;
-}			t_player;
+	t_pos		player_pos;
+	int			direction;
+	t_pos		next_pos;
+}				t_player;
 
 typedef struct s_enemy
 {
-	int		direction;
-	t_pos	enemy_pos;
-	t_pos	enemy_next_pos;
-}			t_enemy;
+	int			direction;
+	t_pos		enemy_pos;
+	t_pos		enemy_next_pos;
+}				t_enemy;
 
 typedef struct s_collec
 {
-	t_pos	collec_pos;
-}			t_collec;
-
+	t_pos		collec_pos;
+}				t_collec;
+*/
 typedef struct s_map
 {
-	char	**grid;
-	int		width;
-	int		height;
-	int		player_count;
-	int		exit_count;
-	int		collec_count;
-}			t_map;
+	char		**grid;
+	int			width;
+	int			height;
+	int			player_count;
+	int			exit_count;
+	int			collec_count;
+}				t_map;
 
 typedef struct s_img
 {
-	void	*ptr;
-	int		w;
-	int		h;
-}	t_img;
+	void		*ptr;
+	int			w;
+	int			h;
+}				t_img;
 
 typedef struct s_sprites
 {
-	t_img	floor;
-	t_img	wall;
-	t_img	player;
-	t_img	exit;
-	t_img	collect;
-}	t_sprites;
+	t_img		floor;
+	t_img		wall;
+	t_img		player;
+	t_img		exit;
+	t_img		collect;
+}				t_sprites;
 
 typedef struct s_game
 {
@@ -116,7 +116,6 @@ typedef struct s_game
 	t_pos		player_pos;
 	t_map		map;
 	t_sprites	sp;
-}	t_game;
-
+}				t_game;
 
 #endif

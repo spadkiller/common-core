@@ -6,11 +6,11 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:56:59 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 20:04:09 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/02/26 21:57:20 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../all.h"
+#include "map_checker.h"
 
 static int	is_valid_char(char c)
 {
