@@ -6,15 +6,15 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:06:58 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/04 15:47:29 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/04 18:17:42 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
-#include "map_checker/map_checker.h"
-#include "render/render.h"
 #include "input/input.h"
 #include "libft/libft.h"
+#include "map_checker/map_checker.h"
+#include "render/render.h"
 
 static void	find_player_and_clear(t_game *g)
 {
@@ -31,7 +31,7 @@ static void	find_player_and_clear(t_game *g)
 			{
 				g->player_pos.x = x;
 				g->player_pos.y = y;
-				g->map.grid[y][x] = EMPTY; 
+				g->map.grid[y][x] = EMPTY;
 				return ;
 			}
 			x++;
@@ -45,6 +45,8 @@ static void	cleanup_game(t_game *g)
 	destroy_sprites(g);
 	if (g->win)
 		mlx_destroy_window(g->mlx, g->win);
+	free(g->ghosts);
+	g->ghosts = NULL;
 	map_free(&g->map);
 }
 
@@ -59,8 +61,8 @@ static void	find_ghost_and_clear(t_game *g)
 	int	x;
 	int	y;
 
-	g->ghost_pos.x = -1;
-	g->ghost_pos.y = -1;
+	g->ghosts.x = -1;
+	g->ghosts.y = -1;
 	y = 0;
 	while (y < g->map.height)
 	{
@@ -69,9 +71,9 @@ static void	find_ghost_and_clear(t_game *g)
 		{
 			if (g->map.grid[y][x] == GHOST)
 			{
-				g->ghost_pos.x = x;
-				g->ghost_pos.y = y;
-				g->map.grid[y][x] = EMPTY; 
+				g->ghosts.x = x;
+				g->ghosts.y = y;
+				g->map.grid[y][x] = EMPTY;
 				return ;
 			}
 			x++;
@@ -88,16 +90,18 @@ int	start_game(const char *map_path)
 	if (map_check(&g.map, map_path) != 0)
 		return (ft_putstr_fd("Error\nInvalid map\n", 2), 1);
 	find_player_and_clear(&g);
-	find_ghost_and_clear(&g);
+	if (ghosts_collect_and_clear(&g) != 0)
+		return (cleanup_game(&g), 1);
 	g.mlx = mlx_init();
 	if (!g.mlx)
 		return (map_free(&g.map), 1);
-	g.win = mlx_new_window(g.mlx, g.map.width * g.tile,
-			g.map.height * g.tile, "so_long");
+	g.win = mlx_new_window(g.mlx, g.map.width * g.tile, g.map.height * g.tile,
+			"so_long");
 	if (!g.win)
 		return (cleanup_game(&g), 1);
 	if (load_sprites(&g) != 0)
-		return (ft_putstr_fd("Error\nXPM load failed\n", 2), cleanup_game(&g), 1);
+		return (ft_putstr_fd("Error\nXPM load failed\n", 2), cleanup_game(&g),
+			1);
 	draw_map(&g);
 	mlx_hook(g.win, DESTROY_NOTIFY, 0, close_game, &g);
 	mlx_key_hook(g.win, handle_key, &g);
@@ -105,4 +109,3 @@ int	start_game(const char *map_path)
 	close_game(&g);
 	return (0);
 }
-

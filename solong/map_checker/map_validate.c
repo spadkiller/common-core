@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:56:59 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/04 17:44:38 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/04 18:13:15 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,6 @@ int	map_validate(t_map *map)
 	if (map->exit_count < 1)
 		return (1);
 	if (map->collec_count < 1)
-		return (1);
-	if (map->ghost_count > 1)
 		return (1);
 	return (0);
 }

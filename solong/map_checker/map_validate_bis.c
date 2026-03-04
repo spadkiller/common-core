@@ -6,11 +6,11 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 17:17:54 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/04 17:45:22 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/04 17:47:07 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_checker.h"\
+#include "map_checker.h"
 
 void map_count_cell(t_map *map, char c)
 {
