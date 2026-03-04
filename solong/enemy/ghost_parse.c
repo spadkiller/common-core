@@ -6,11 +6,11 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 18:13:47 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/04 18:13:57 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/04 18:28:23 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../all.h"
+#include "enemy.h"
 
 int	ghosts_collect_and_clear(t_game *g)
 {

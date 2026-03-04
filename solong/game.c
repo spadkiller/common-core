@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:06:58 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/04 18:17:42 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/04 18:31:06 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	cleanup_game(t_game *g)
 		mlx_destroy_window(g->mlx, g->win);
 	free(g->ghosts);
 	g->ghosts = NULL;
+	g->ghost_count = 0;
 	map_free(&g->map);
 }
 
@@ -56,31 +57,7 @@ static int	close_game(t_game *g)
 	exit(0);
 	return (0);
 }
-static void	find_ghost_and_clear(t_game *g)
-{
-	int	x;
-	int	y;
 
-	g->ghosts.x = -1;
-	g->ghosts.y = -1;
-	y = 0;
-	while (y < g->map.height)
-	{
-		x = 0;
-		while (x < g->map.width)
-		{
-			if (g->map.grid[y][x] == GHOST)
-			{
-				g->ghosts.x = x;
-				g->ghosts.y = y;
-				g->map.grid[y][x] = EMPTY;
-				return ;
-			}
-			x++;
-		}
-		y++;
-	}
-}
 int	start_game(const char *map_path)
 {
 	t_game	g;
