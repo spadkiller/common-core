@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 19:58:56 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 20:05:38 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/04 15:51:12 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void	put(t_game *g, t_img *img, int x, int y)
 {
-	mlx_put_image_to_window(g->mlx, g->win, img->ptr, x * g->tile, y * g->tile);
+	mlx_put_image_to_window(g->mlx, g->win, img->ptr,
+		x * g->tile, y * g->tile);
 }
 
 void	draw_map(t_game *g)
@@ -37,10 +38,11 @@ void	draw_map(t_game *g)
 				put(g, &g->sp.collect, x, y);
 			else if (c == EXIT)
 				put(g, &g->sp.exit, x, y);
-			else if (c == PLAYER)
-				put(g, &g->sp.player, x, y);
 			x++;
 		}
 		y++;
 	}
+	put(g, &g->sp.player, g->player_pos.x, g->player_pos.y);
+	if (g->ghost_pos.x >= 0 && g->ghost_pos.y >= 0)
+		put(g, &g->sp.ghost, g->ghost_pos.x, g->ghost_pos.y);
 }

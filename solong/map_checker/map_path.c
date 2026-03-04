@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:57:15 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 21:57:15 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/04 16:27:49 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,11 @@ static void	flood(char **g, t_map *map, int x, int y, int *c_ok, int *e_ok)
 	if (cell == COLLECTIBLE)
 		(*c_ok)++;
 	if (cell == EXIT)
+	{
 		(*e_ok)++;
+		g[y][x] = 'V';
+		return ; 
+	}
 	g[y][x] = 'V';
 	flood(g, map, x + 1, y, c_ok, e_ok);
 	flood(g, map, x - 1, y, c_ok, e_ok);

@@ -6,17 +6,11 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:56:59 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 21:57:20 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/04 17:20:43 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_checker.h"
-
-static int	is_valid_char(char c)
-{
-	return (c == WALL || c == EMPTY || c == PLAYER
-		|| c == EXIT || c == COLLECTIBLE);
-}
 
 static int	check_rectangle(t_map *map)
 {
@@ -43,26 +37,36 @@ static int	check_walls(t_map *map)
 	x = 0;
 	while (x < map->width)
 	{
-		if (map->grid[0][x] != WALL
-			|| map->grid[map->height - 1][x] != WALL)
+		if (map->grid[0][x] != WALL || map->grid[map->height - 1][x] != WALL)
 			return (1);
 		x++;
 	}
 	y = 0;
 	while (y < map->height)
 	{
-		if (map->grid[y][0] != WALL
-			|| map->grid[y][map->width - 1] != WALL)
+		if (map->grid[y][0] != WALL || map->grid[y][map->width - 1] != WALL)
 			return (1);
 		y++;
 	}
 	return (0);
 }
 
+static void	count_cell(t_map *map, char c)
+{
+	if (c == PLAYER)
+		map->player_count++;
+	else if (c == EXIT)
+		map->exit_count++;
+	else if (c == COLLECTIBLE)
+		map->collec_count++;
+	else if (c == GHOST)
+		map->ghost_count++;
+}
+
 static int	count_and_charset(t_map *map)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	char	c;
 
 	y = 0;
@@ -74,12 +78,7 @@ static int	count_and_charset(t_map *map)
 			c = map->grid[y][x];
 			if (!is_valid_char(c))
 				return (1);
-			if (c == PLAYER)
-				map->player_count++;
-			else if (c == EXIT)
-				map->exit_count++;
-			else if (c == COLLECTIBLE)
-				map->collec_count++;
+			count_cell(map, c);
 			x++;
 		}
 		y++;
@@ -104,6 +103,8 @@ int	map_validate(t_map *map)
 	if (map->exit_count < 1)
 		return (1);
 	if (map->collec_count < 1)
+		return (1);
+	if (map->ghost_count > 1)
 		return (1);
 	return (0);
 }

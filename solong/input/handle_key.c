@@ -6,12 +6,13 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:27:17 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 21:41:13 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/04 16:09:14 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "input.h"
+#include "../enemy/enemy.h"
 #include "../printf/ft_printf.h"
+#include "input.h"
 
 static int	count_collect_left(t_game *g)
 {
@@ -46,10 +47,10 @@ static int	can_enter_cell(t_game *g, char dest)
 
 static void	apply_player_move(t_game *g, int nx, int ny)
 {
-	g->map.grid[g->player_pos.y][g->player_pos.x] = EMPTY;
+	if (g->map.grid[ny][nx] == COLLECTIBLE)
+		g->map.grid[ny][nx] = EMPTY;
 	g->player_pos.x = nx;
 	g->player_pos.y = ny;
-	g->map.grid[ny][nx] = PLAYER;
 	g->moves++;
 	ft_printf("Moves: %d\n", g->moves);
 }
@@ -62,6 +63,14 @@ static void	try_move(t_game *g, int dx, int dy)
 
 	nx = g->player_pos.x + dx;
 	ny = g->player_pos.y + dy;
+	if (nx < 0 || ny < 0 || nx >= g->map.width || ny >= g->map.height)
+		return ;
+	if (g->ghost_pos.x == nx && g->ghost_pos.y == ny)
+	{
+		ft_putstr_fd("Game Over\n", 2);
+		mlx_loop_end(g->mlx);
+		return ;
+	}
 	dest = g->map.grid[ny][nx];
 	if (!can_enter_cell(g, dest))
 		return ;
@@ -73,6 +82,7 @@ static void	try_move(t_game *g, int dx, int dy)
 		return ;
 	}
 	apply_player_move(g, nx, ny);
+	ghost_step_towards_player(g);
 	draw_map(g);
 }
 

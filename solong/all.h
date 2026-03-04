@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:47:13 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 21:52:54 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/04 16:46:32 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define COLLECTIBLE 'C'
 # define EXIT 'E'
 # define PLAYER 'P'
+# define GHOST 'G' 
 
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
@@ -89,6 +90,7 @@ typedef struct s_map
 	int			player_count;
 	int			exit_count;
 	int			collec_count;
+	int			ghost_count;
 }				t_map;
 
 typedef struct s_img
@@ -103,6 +105,7 @@ typedef struct s_sprites
 	t_img		floor;
 	t_img		wall;
 	t_img		player;
+	t_img		ghost;
 	t_img		exit;
 	t_img		collect;
 }				t_sprites;
@@ -114,6 +117,7 @@ typedef struct s_game
 	int			tile;
 	int			moves;
 	t_pos		player_pos;
+	t_pos		ghost_pos;
 	t_map		map;
 	t_sprites	sp;
 }				t_game;

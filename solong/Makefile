@@ -6,7 +6,7 @@
 #    By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/26 21:42:03 by gujarry           #+#    #+#              #
-#    Updated: 2026/02/26 21:49:33 by gujarry          ###   ########.fr        #
+#    Updated: 2026/03/04 16:06:35 by gujarry          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,16 @@ MLX_DIR		= minilibx-linux
 MLX_LIB		= $(MLX_DIR)/libmlx.a
 MLX_FLAGS	= -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
-INCLUDES	= -I. -Ilibft -Iprintf -Iget_next_line -Imap_checker -Irender -Iinput -I$(MLX_DIR)
+INCLUDES	= -I. -Ilibft -Iprintf -Iget_next_line -Imap_checker -Irender -Iinput -Ienemy -I$(MLX_DIR)
 
 SRCS		= solong.c game.c \
 			  map_checker/map_checker.c map_checker/map_load.c \
 			  map_checker/map_validate.c map_checker/map_free.c map_checker/map_path.c \
 			  render/load_sprite.c render/draw_map.c render/destroy_sprite.c \
 			  input/handle_key.c \
+			  enemy/ghost.c \
 			  get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-			  libft/ft_strlen.c libft/ft_strdup.c libft/ft_putstr_fd.c \
+			  libft/ft_strlen.c libft/ft_strdup.c libft/ft_putstr_fd.c libft/ft_bzero.c \
 			  printf/ft_printf.c printf/ft_.c printf/ft_sec.c
 
 OBJS		= $(SRCS:.c=.o)

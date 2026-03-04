@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:56:44 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/26 21:40:34 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/04 16:47:25 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	map_init(t_map *map)
 	map->player_count = 0;
 	map->exit_count = 0;
 	map->collec_count = 0;
+	map->ghost_count = 0;
 }
 
 static char	*trim_nl(char *line)
