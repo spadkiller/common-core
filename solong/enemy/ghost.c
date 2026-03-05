@@ -6,12 +6,11 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 15:54:18 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/04 18:34:20 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 11:34:08 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "enemy.h"
-
 
 static int	iabs(int n)
 {
@@ -84,8 +83,8 @@ static void	choose_best_step(t_game *g, t_pos *gh, t_pos *moved,
 	i = 0;
 	while (i < 4)
 	{
-		if (can_enter_map(g, nx[i], ny[i])
-			&& !is_occupied_by_any_ghost(g, moved, moved_count, nx[i], ny[i]))
+		if (can_enter_map(g, nx[i], ny[i]) && !is_occupied_by_any_ghost(g,
+				moved, moved_count, nx[i], ny[i]))
 		{
 			d = manhattan(nx[i], ny[i], g->player_pos.x, g->player_pos.y);
 			if (d < best_d)

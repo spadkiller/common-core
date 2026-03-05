@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:06:58 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/04 18:31:06 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/04 18:39:31 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft/libft.h"
 #include "map_checker/map_checker.h"
 #include "render/render.h"
+#include "enemy/enemy.h"
 
 static void	find_player_and_clear(t_game *g)
 {
