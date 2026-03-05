@@ -6,11 +6,25 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 15:45:16 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/05 15:16:57 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 15:22:20 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_checker.h"
+#include "../libft/libft.h"
+
+static int	is_dot_ber(const char *path)
+{
+	size_t	i;
+
+	i = ft_strlen(path);
+	if (i < 4)
+		return (1);
+	if (i >= 5 && path[i - 5] == '/' && path[i - 4] == '.'
+		&& path[i - 3] == 'b' && path[i - 2] == 'e' && path[i - 1] == 'r')
+		return (1);
+	return (0);
+}
 
 static int	has_ber_extension(const char *path)
 {

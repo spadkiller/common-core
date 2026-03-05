@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 21:30:29 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/05 15:16:38 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 15:19:34 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void		map_count_cell(t_map *map, char c);
 int			map_flood_check(char **g, t_map *map, int px, int py);
 void		map_init(t_map *map);
 int			map_push_line(t_map *map, char *line);
-static int	is_dot_ber(const char *path);
 
 typedef struct s_flood
 {

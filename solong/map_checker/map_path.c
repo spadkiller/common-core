@@ -6,25 +6,11 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:57:15 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/05 15:15:22 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 15:19:25 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_checker.h"
-#include "../libft/libft.h"
-
-static int	is_dot_ber(const char *path)
-{
-	size_t	i;
-
-	i = ft_strlen(path);
-	if (i < 4)
-		return (1);
-	if (i >= 5 && path[i - 5] == '/' && path[i - 4] == '.'
-		&& path[i - 3] == 'b' && path[i - 2] == 'e' && path[i - 1] == 'r')
-		return (1);
-	return (0);
-}
 
 static void	free_grid_copy(char **g)
 {

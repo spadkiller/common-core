@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 15:44:26 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/05 13:46:43 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 15:23:41 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	find_player_and_clear(t_game *g)
 		y++;
 	}
 }
+
 int	init_map_and_entities(t_game *g, const char *map_path)
 {
 	if (map_check(&g->map, map_path) != 0)
