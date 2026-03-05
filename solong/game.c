@@ -6,16 +6,16 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:06:58 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/04 18:39:31 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 12:09:19 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
+#include "enemy/enemy.h"
 #include "input/input.h"
 #include "libft/libft.h"
 #include "map_checker/map_checker.h"
 #include "render/render.h"
-#include "enemy/enemy.h"
 
 static void	find_player_and_clear(t_game *g)
 {
@@ -58,7 +58,17 @@ static int	close_game(t_game *g)
 	exit(0);
 	return (0);
 }
+static int	check_window_size(t_game *g)
+{
+	int	w;
+	int	h;
 
+	w = g->map.width * g->tile;
+	h = g->map.height * g->tile;
+	if (w > 1920 || h > 1080)
+		return (1);
+	return (0);
+}
 int	start_game(const char *map_path)
 {
 	t_game	g;
@@ -73,6 +83,8 @@ int	start_game(const char *map_path)
 	g.mlx = mlx_init();
 	if (!g.mlx)
 		return (map_free(&g.map), 1);
+	if (check_window_size(&g) != 0)
+		return (ft_putstr_fd("Error\nMap too big\n", 2), cleanup_game(&g), 1);
 	g.win = mlx_new_window(g.mlx, g.map.width * g.tile, g.map.height * g.tile,
 			"so_long");
 	if (!g.win)
