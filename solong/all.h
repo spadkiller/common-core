@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:47:13 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/04 18:26:41 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 15:02:15 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_collec
 	t_pos		collec_pos;
 }				t_collec;
 */
+
 typedef struct s_map
 {
 	char		**grid;

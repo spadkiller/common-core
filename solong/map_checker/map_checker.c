@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 15:45:16 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/05 13:11:43 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 15:16:57 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ int	map_check(t_map *map, const char *path)
 		return (map_free(map), 1);
 	if (map_check_path(map) != 0)
 		return (map_free(map), 1);
+	if (is_dot_ber(path))
+		return (1);
 	return (0);
 }

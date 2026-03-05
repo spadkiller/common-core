@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 12:38:15 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/05 13:03:17 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 14:59:02 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ghost_is_occupied(t_ghost_step *st, int x, int y)
 	return (0);
 }
 
-int	ghost_dist_to_player(t_game *g, int x, int y)
+int	ghost_dist(t_game *g, int x, int y)
 {
 	return (manhattan(x, y, g->player_pos.x, g->player_pos.y));
 }

@@ -6,46 +6,52 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 13:13:23 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/05 13:18:56 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 15:04:00 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_checker.h"
 
-static void	push(t_flood *f, int x, int y)
-{
-	f->stack[f->top].x = x;
-	f->stack[f->top].y = y;
-	f->top++;
-}
-
-static void	mark_and_push(t_flood *f, int x, int y)
-{
-	f->g[y][x] = 'V';
-	push(f, x + 1, y);
-	push(f, x - 1, y);
-	push(f, x, y + 1);
-	push(f, x, y - 1);
-}
-
-static void	visit(t_flood *f, int x, int y)
+static int	can_visit(t_flood *f, int x, int y)
 {
 	char	cell;
 
 	if (x < 0 || y < 0 || x >= f->map->width || y >= f->map->height)
-		return ;
+		return (0);
 	cell = f->g[y][x];
 	if (cell == WALL || cell == 'V')
-		return ;
+		return (0);
 	if (cell == COLLECTIBLE)
 		f->c_ok++;
 	if (cell == EXIT)
 	{
 		f->e_ok++;
 		f->g[y][x] = 'V';
-		return ;
+		return (0);
 	}
-	mark_and_push(f, x, y);
+	f->g[y][x] = 'V';
+	return (1);
+}
+
+static void	push(t_flood *f, int x, int y)
+{
+	if (f->top >= f->max)
+		return ;
+	f->st[f->top].x = x;
+	f->st[f->top].y = y;
+	f->top++;
+}
+
+static void	push_neighbors(t_flood *f, int x, int y)
+{
+	if (can_visit(f, x + 1, y))
+		push(f, x + 1, y);
+	if (can_visit(f, x - 1, y))
+		push(f, x - 1, y);
+	if (can_visit(f, x, y + 1))
+		push(f, x, y + 1);
+	if (can_visit(f, x, y - 1))
+		push(f, x, y - 1);
 }
 
 static int	check_result(t_flood *f)
@@ -60,23 +66,27 @@ static int	check_result(t_flood *f)
 int	map_flood_check(char **g, t_map *map, int px, int py)
 {
 	t_flood	f;
-	int		max;
+	size_t	max;
 
-	max = map->width * map->height;
+	if (map->width > 200 || map->height > 200)
+		return (1);
+	max = (size_t)map->width * (size_t)map->height;
 	f.g = g;
 	f.map = map;
-	f.stack = (t_pos *)malloc(sizeof(t_pos) * max);
-	if (!f.stack)
+	f.st = (t_pos *)malloc(sizeof(t_pos) * max);
+	if (!f.st)
 		return (1);
 	f.top = 0;
+	f.max = (int)max;
 	f.c_ok = 0;
 	f.e_ok = 0;
-	push(&f, px, py);
+	if (can_visit(&f, px, py))
+		push(&f, px, py);
 	while (f.top > 0)
 	{
 		f.top--;
-		visit(&f, f.stack[f.top].x, f.stack[f.top].y);
+		push_neighbors(&f, f.st[f.top].x, f.st[f.top].y);
 	}
-	free(f.stack);
+	free(f.st);
 	return (check_result(&f));
 }

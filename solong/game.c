@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:06:58 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/05 13:47:51 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 15:01:58 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 #include "map_checker/map_checker.h"
 #include "render/render.h"
 
-int	init_map_and_entities(t_game *g, const char *map_path);
+int			init_map_and_entities(t_game *g, const char *map_path);
+int			window_too_big(t_game *g);
 
 static void	cleanup_game(t_game *g)
 {
@@ -42,8 +43,10 @@ static int	init_mlx_and_window(t_game *g)
 	g->mlx = mlx_init();
 	if (!g->mlx)
 		return (cleanup_game(g), 1);
-	g->win = mlx_new_window(g->mlx, g->map.width * g->tile,
-			g->map.height * g->tile, "so_long");
+	if (window_too_big(g))
+		return (ft_putstr_fd("Error\nMap too big\n", 2), cleanup_game(g), 1);
+	g->win = mlx_new_window(g->mlx, g->map.width * g->tile, g->map.height
+			* g->tile, "so_long");
 	if (!g->win)
 		return (cleanup_game(g), 1);
 	return (0);
