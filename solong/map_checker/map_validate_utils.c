@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validate_bis.c                                 :+:      :+:    :+:   */
+/*   map_validate_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,13 @@
 
 #include "map_checker.h"
 
-void map_count_cell(t_map *map, char c)
+int	map_is_valid_char(char c)
+{
+	return (c == WALL || c == EMPTY || c == PLAYER
+		|| c == EXIT || c == COLLECTIBLE || c == GHOST);
+}
+
+void	map_count_cell(t_map *map, char c)
 {
 	if (c == PLAYER)
 		map->player_count++;

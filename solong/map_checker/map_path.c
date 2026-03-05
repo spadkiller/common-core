@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:57:15 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/04 16:27:49 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 12:14:29 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,28 +69,55 @@ static void	find_player(t_map *map, int *px, int *py)
 	}
 }
 
-static void	flood(char **g, t_map *map, int x, int y, int *c_ok, int *e_ok)
+static int	push_pos(t_pos *stack, int *top, int x, int y)
 {
+	stack[*top].x = x;
+	stack[*top].y = y;
+	(*top)++;
+	return (0);
+}
+
+static int	flood_iter(char **g, t_map *map, int px, int py, int *c_ok, int *e_ok)
+{
+	t_pos	*stack;
+	int		top;
+	int		max;
+	int		x;
+	int		y;
 	char	cell;
 
-	if (x < 0 || y < 0 || x >= map->width || y >= map->height)
-		return ;
-	cell = g[y][x];
-	if (cell == WALL || cell == 'V')
-		return ;
-	if (cell == COLLECTIBLE)
-		(*c_ok)++;
-	if (cell == EXIT)
+	max = map->width * map->height;
+	stack = (t_pos *)malloc(sizeof(t_pos) * max);
+	if (!stack)
+		return (1);
+	top = 0;
+	push_pos(stack, &top, px, py);
+	while (top > 0)
 	{
-		(*e_ok)++;
+		top--;
+		x = stack[top].x;
+		y = stack[top].y;
+		if (x < 0 || y < 0 || x >= map->width || y >= map->height)
+			continue ;
+		cell = g[y][x];
+		if (cell == WALL || cell == 'V')
+			continue ;
+		if (cell == COLLECTIBLE)
+			(*c_ok)++;
+		if (cell == EXIT)
+		{
+			(*e_ok)++;
+			g[y][x] = 'V';
+			continue ;
+		}
 		g[y][x] = 'V';
-		return ; 
+		push_pos(stack, &top, x + 1, y);
+		push_pos(stack, &top, x - 1, y);
+		push_pos(stack, &top, x, y + 1);
+		push_pos(stack, &top, x, y - 1);
 	}
-	g[y][x] = 'V';
-	flood(g, map, x + 1, y, c_ok, e_ok);
-	flood(g, map, x - 1, y, c_ok, e_ok);
-	flood(g, map, x, y + 1, c_ok, e_ok);
-	flood(g, map, x, y - 1, c_ok, e_ok);
+	free(stack);
+	return (0);
 }
 
 int	map_check_path(t_map *map)
@@ -111,7 +138,8 @@ int	map_check_path(t_map *map)
 		return (1);
 	c_ok = 0;
 	e_ok = 0;
-	flood(g, map, px, py, &c_ok, &e_ok);
+	if (flood_iter(g, map, px, py, &c_ok, &e_ok) != 0)
+		return (free_grid_copy(g), 1);
 	free_grid_copy(g);
 	if (c_ok != map->collec_count)
 		return (1);
