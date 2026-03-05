@@ -6,7 +6,7 @@
 #    By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/26 21:42:03 by gujarry           #+#    #+#              #
-#    Updated: 2026/03/05 13:00:15 by gujarry          ###   ########.fr        #
+#    Updated: 2026/03/05 13:15:51 by gujarry          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ MLX_FLAGS	= -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 INCLUDES	= -I. -Ilibft -Iprintf -Iget_next_line -Imap_checker -Irender -Iinput -Ienemy -I$(MLX_DIR)
 
 SRCS		= solong.c game.c \
-			  map_checker/map_checker.c map_checker/map_load.c \
+			  map_checker/map_checker.c map_checker/map_load.c map_checker/map_path_flood.c \
 			  map_checker/map_validate.c map_checker/map_free.c map_checker/map_path.c \
 			  map_checker/map_validate_checks.c map_checker/map_validate_utils.c \
 			  render/load_sprite.c render/draw_map.c render/destroy_sprite.c \

@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 12:34:24 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/05 12:58:11 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 13:09:13 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int			ghost_can_enter(t_game *g, int x, int y);
 int			ghost_is_occupied(t_ghost_step *st, int x, int y);
 int			ghost_dist(t_game *g, int x, int y);
 
-void	ghost_choose_step(t_ghost_step *st, t_pos *gh, int *out_x, int *out_y);
+void		ghost_choose_step(t_ghost_step *st, t_pos *gh, int *out_x,
+				int *out_y);
 
 #endif
