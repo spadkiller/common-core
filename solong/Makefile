@@ -6,7 +6,7 @@
 #    By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/26 21:42:03 by gujarry           #+#    #+#              #
-#    Updated: 2026/03/05 13:15:51 by gujarry          ###   ########.fr        #
+#    Updated: 2026/03/05 13:30:51 by gujarry          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,9 @@ SRCS		= solong.c game.c \
 			  map_checker/map_checker.c map_checker/map_load.c map_checker/map_path_flood.c \
 			  map_checker/map_validate.c map_checker/map_free.c map_checker/map_path.c \
 			  map_checker/map_validate_checks.c map_checker/map_validate_utils.c \
+			  map_checker/map_load_utils.c \
 			  render/load_sprite.c render/draw_map.c render/destroy_sprite.c \
-			  input/handle_key.c \
+			  input/handle_key.c input/handle_key_utils.c \
 			  enemy/ghost.c enemy/ghost_parse.c enemy/ghost.c enemy/ghost_parse.c \
 			  enemy/ghost_utils.c enemy/ghost_step.c \
 			  get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \

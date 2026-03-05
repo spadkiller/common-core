@@ -6,21 +6,11 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 13:13:23 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/05 13:14:23 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 13:18:56 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_checker.h"
-
-typedef struct s_flood
-{
-	char	**g;
-	t_map	*map;
-	t_pos	*stack;
-	int		top;
-	int		c_ok;
-	int		e_ok;
-}	t_flood;
 
 static void	push(t_flood *f, int x, int y)
 {
