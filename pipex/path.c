@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 11:07:33 by gujarry           #+#    #+#             */
-/*   Updated: 2026/02/10 12:20:34 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/05 15:42:20 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,40 @@ static char	*find_path(char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		if (!ft_strncmp(envp[i], "PATH=", 5))
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 			return (envp[i] + 5);
+		i++;
+	}
+	return (NULL);
+}
+
+static char	*join_path_cmd(char *dir, char *cmd)
+{
+	char	*tmp;
+	char	*full;
+
+	tmp = ft_strjoin(dir, "/");
+	if (!tmp)
+		return (NULL);
+	full = ft_strjoin(tmp, cmd);
+	free(tmp);
+	return (full);
+}
+
+static char	*try_paths(char **paths, char *cmd)
+{
+	char	*full;
+	int		i;
+
+	i = 0;
+	while (paths[i])
+	{
+		full = join_path_cmd(paths[i], cmd);
+		if (!full)
+			return (NULL);
+		if (access(full, X_OK) == 0)
+			return (full);
+		free(full);
 		i++;
 	}
 	return (NULL);
@@ -29,12 +61,9 @@ static char	*find_path(char **envp)
 char	*get_cmd_path(char *cmd, char **envp)
 {
 	char	**paths;
-	char	*tmp;
 	char	*full;
 	char	*env_path;
-	int		i;
 
-	i = 0;
 	if (access(cmd, X_OK) == 0)
 		return (ft_strdup(cmd));
 	env_path = find_path(envp);
@@ -43,19 +72,7 @@ char	*get_cmd_path(char *cmd, char **envp)
 	paths = ft_split(env_path, ':');
 	if (!paths)
 		return (NULL);
-	while (paths[i])
-	{
-		tmp = ft_strjoin(paths[i], "/");
-		full = ft_strjoin(tmp, cmd);
-		free(tmp);
-		if (access(full, X_OK) == 0)
-		{
-			free_tab(paths);
-			return (full);
-		}
-		free(full);
-		i++;
-	}
+	full = try_paths(paths, cmd);
 	free_tab(paths);
-	return (NULL);
+	return (full);
 }
