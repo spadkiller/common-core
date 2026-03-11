@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 09:44:53 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/06 13:44:35 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/09 16:10:44 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,8 @@ char	*ft_strdup(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, unsigned int n);
 size_t	ft_strlen(const char *s);
 int		wait_children(pid_t pid1, pid_t pid2);
+
+int		path_missing(char **envp);
+int		has_slash(char *s);
 
 #endif

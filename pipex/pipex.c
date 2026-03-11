@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 09:41:23 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/05 15:54:17 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/09 16:18:12 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,19 @@ static void	child2(int outfile, int fd[2], char *cmd, char **envp)
 	exec_cmd(cmd, envp);
 }
 
-static void	open_files(char **argv, int *infile, int *outfile)
+static int	open_files(char **argv, int *infile, int *outfile)
 {
+	int	out_failed;
+
+	out_failed = 0;
 	*outfile = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (*outfile < 0)
 	{
+		out_failed = 1;
 		perror(argv[4]);
-		exit(EXIT_FAILURE);
+		*outfile = open("/dev/null", O_WRONLY);
+		if (*outfile < 0)
+			exit(EXIT_FAILURE);
 	}
 	*infile = open(argv[1], O_RDONLY);
 	if (*infile < 0)
@@ -52,9 +58,10 @@ static void	open_files(char **argv, int *infile, int *outfile)
 		if (*infile < 0)
 			exit(EXIT_FAILURE);
 	}
+	return (out_failed);
 }
 
-static void	spawn_and_wait(int infile, int outfile, char **argv, char **envp)
+static int	spawn_and_wait(int infile, int outfile, char **argv, char **envp)
 {
 	int		fd[2];
 	pid_t	pid1;
@@ -74,20 +81,23 @@ static void	spawn_and_wait(int infile, int outfile, char **argv, char **envp)
 		child2(outfile, fd, argv[3], envp);
 	close(fd[0]);
 	close(fd[1]);
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
+	return (wait_children(pid1, pid2));
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	int	infile;
 	int	outfile;
+	int	status;
+	int	out_failed;
 
 	if (argc != 5)
 		error_exit("Usage: ./pipex infile cmd1 cmd2 outfile");
-	open_files(argv, &infile, &outfile);
-	spawn_and_wait(infile, outfile, argv, envp);
+	out_failed = open_files(argv, &infile, &outfile);
+	status = spawn_and_wait(infile, outfile, argv, envp);
 	close(infile);
 	close(outfile);
-	return (0);
+	if (out_failed)
+		return (1);
+	return (status);
 }

@@ -1,23 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   utils_bis.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/26 21:30:58 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/11 11:03:03 by gujarry          ###   ########.fr       */
+/*   Created: 2026/03/09 16:05:23 by gujarry           #+#    #+#             */
+/*   Updated: 2026/03/09 16:17:23 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#include "pipex.h"
 
-# include "../all.h"
+#include "pipex.h"
 
-int		load_sprites(t_game *g);
-void	draw_map(t_game *g);
-void	destroy_sprites(t_game *g);
-int		anim_loop(void *param);
+int	path_missing(char **envp)
+{
+	int	i;
 
-#endif
+	if (!envp)
+		return (1);
+	i = 0;
+	while (envp[i])
+	{
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
+			return (envp[i][5] == '\0');
+		i++;
+	}
+	return (1);
+}
+
+int	has_slash(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s && s[i])
+	{
+		if (s[i] == '/')
+			return (1);
+		i++;
+	}
+	return (0);
+}

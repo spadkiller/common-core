@@ -6,7 +6,7 @@
 #    By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/09 14:09:10 by gujarry           #+#    #+#              #
-#    Updated: 2026/02/09 14:54:19 by gujarry          ###   ########.fr        #
+#    Updated: 2026/03/09 16:11:18 by gujarry          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = pipex
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I. -Ilibft
 
-SRC = pipex.c path.c utils.c
+SRC = pipex.c path.c utils.c wait.c utils_bis.c
 OBJ = $(SRC:.c=.o)
 
 LIBFT_DIR = libft

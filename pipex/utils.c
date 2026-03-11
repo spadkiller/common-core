@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 11:03:14 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/05 15:58:20 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/09 16:17:43 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,36 +33,42 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
-static void	cmd_error(char *cmd, char *msg, int code)
+static int	is_blank(char *s)
 {
-	write(2, "pipex: ", 7);
-	write(2, cmd, ft_strlen(cmd));
-	write(2, ": ", 2);
-	write(2, msg, ft_strlen(msg));
-	write(2, "\n", 1);
-	exit(code);
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (1);
+	while (s[i])
+	{
+		if (s[i] != ' ' && s[i] != '\t')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static void	cmd_not_found(void)
+{
+	write(2, "Command not found\n", 18);
+	exit(127);
 }
 
 void	exec_cmd(char *cmd, char **envp)
 {
-	char	**args;
-	char	*path;
+	char	*argv_exec[4];
 
-	args = ft_split(cmd, ' ');
-	if (!args || !args[0])
-		cmd_error(cmd, "command not found", 127);
-	path = get_cmd_path(args[0], envp);
-	if (!path)
-	{
-		free_tab(args);
-		cmd_error(args[0], "command not found", 127);
-	}
-	execve(path, args, envp);
-	free(path);
-	free_tab(args);
-	if (errno == EACCES)
-		cmd_error(cmd, "Permission denied", 126);
-	if (errno == ENOENT)
-		cmd_error(cmd, "No such file or directory", 127);
-	cmd_error(cmd, strerror(errno), 126);
+	if (is_blank(cmd))
+		cmd_not_found();
+	if (path_missing(envp) && !has_slash(cmd))
+		cmd_not_found();
+	argv_exec[0] = "bash";
+	argv_exec[1] = "-c";
+	argv_exec[2] = cmd;
+	argv_exec[3] = NULL;
+	execve("/bin/bash", argv_exec, envp);
+	argv_exec[0] = "sh";
+	execve("/bin/sh", argv_exec, envp);
+	error_exit("execve");
 }

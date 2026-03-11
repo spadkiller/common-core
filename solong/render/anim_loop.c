@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   anim_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/26 21:30:58 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/11 11:03:03 by gujarry          ###   ########.fr       */
+/*   Created: 2026/03/11 11:01:54 by gujarry           #+#    #+#             */
+/*   Updated: 2026/03/11 11:02:41 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#include "../all.h"
+#include "render.h"
 
-# include "../all.h"
+int	anim_loop(void *param)
+{
+	t_game	*g;
 
-int		load_sprites(t_game *g);
-void	draw_map(t_game *g);
-void	destroy_sprites(t_game *g);
-int		anim_loop(void *param);
-
-#endif
+	g = (t_game *)param;
+	g->tick++;
+	if (g->tick % 10 == 0)
+	{
+		g->anim_frame ^= 1;
+		draw_map(g);
+	}
+	return (0);
+}

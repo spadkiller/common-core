@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 13:44:04 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/06 13:45:01 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/09 16:14:10 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,21 @@
 
 int	wait_children(pid_t pid1, pid_t pid2)
 {
-	int	status1;
-	int	status2;
+	int		status;
+	int		status2;
+	pid_t	pid;
+	int		i;
 
-	waitpid(pid1, &status1, 0);
-	waitpid(pid2, &status2, 0);
+	(void)pid1;
+	status2 = 1;
+	i = 0;
+	while (i < 2)
+	{
+		pid = waitpid(-1, &status, 0);
+		if (pid == pid2)
+			status2 = status;
+		i++;
+	}
 	if (WIFEXITED(status2))
 		return (WEXITSTATUS(status2));
 	if (WIFSIGNALED(status2))

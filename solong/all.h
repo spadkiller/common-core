@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:47:13 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/05 15:02:15 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/11 11:00:15 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_sprites
 	t_img		ghost;
 	t_img		exit;
 	t_img		collect;
+	t_img		collect_anim[2];
 }				t_sprites;
 
 typedef struct s_game
@@ -117,11 +118,13 @@ typedef struct s_game
 	void		*win;
 	int			tile;
 	int			moves;
+	int			tick;
+	int			anim_frame;
 	t_pos		player_pos;
 	t_pos		*ghosts;
 	int			ghost_count;
 	t_map		map;
 	t_sprites	sp;
-}				t_game;
+}				t_game;				t_game;
 
 #endif

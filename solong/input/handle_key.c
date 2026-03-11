@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:27:17 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/05 13:29:58 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/11 11:04:25 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	try_move_player(t_game *g, int dx, int dy)
 	g->player_pos.x = nx;
 	g->player_pos.y = ny;
 	g->moves++;
-	ft_printf("Moves: %d\n", g->moves);
 	return (1);
 }
 
