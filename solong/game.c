@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:06:58 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/11 11:06:15 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/11 11:09:25 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ int	start_game(const char *map_path)
 		return (ft_putstr_fd("Error\nXPM load failed\n", 2), cleanup_game(&g),
 			1);
 	draw_map(&g);
-	g->tick = 0;
-	g->anim_frame = 0;
-	mlx_loop_hook(g->mlx, anim_loop, g);
+	g.tick = 0;
+	g.anim_frame = 0;
+	mlx_loop_hook(g.mlx, anim_loop, &g);
 	mlx_hook(g.win, DESTROY_NOTIFY, 0, close_game, &g);
 	mlx_key_hook(g.win, handle_key, &g);
 	mlx_loop(g.mlx);
