@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:47:13 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/11 11:00:15 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/11 11:49:29 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,40 +48,11 @@
 # define DIR_LEFT 2
 # define DIR_RIGHT 3
 
-/*typedef struct s_data
-{
-	void		*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-}				t_data;
-*/
 typedef struct s_pos
 {
 	int			x;
 	int			y;
 }				t_pos;
-
-/*typedef struct s_player
-{
-	t_pos		player_pos;
-	int			direction;
-	t_pos		next_pos;
-}				t_player;
-
-typedef struct s_enemy
-{
-	int			direction;
-	t_pos		enemy_pos;
-	t_pos		enemy_next_pos;
-}				t_enemy;
-
-typedef struct s_collec
-{
-	t_pos		collec_pos;
-}				t_collec;
-*/
 
 typedef struct s_map
 {
@@ -109,7 +80,7 @@ typedef struct s_sprites
 	t_img		ghost;
 	t_img		exit;
 	t_img		collect;
-	t_img		collect_anim[2];
+	t_img		collect_anim[3];
 }				t_sprites;
 
 typedef struct s_game
@@ -119,12 +90,13 @@ typedef struct s_game
 	int			tile;
 	int			moves;
 	int			tick;
+	long		last_anim_ms;
 	int			anim_frame;
 	t_pos		player_pos;
 	t_pos		*ghosts;
 	int			ghost_count;
 	t_map		map;
 	t_sprites	sp;
-}				t_game;				t_game;
+}				t_game;
 
 #endif

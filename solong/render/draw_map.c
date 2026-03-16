@@ -6,11 +6,12 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 19:58:56 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/11 11:01:25 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/11 11:39:42 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../all.h"
+#include "../libft/libft.h"
 
 static void	put(t_game *g, t_img *img, int x, int y)
 {

@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 09:41:23 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/09 16:18:12 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/14 03:24:56 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	open_files(char **argv, int *infile, int *outfile)
 	int	out_failed;
 
 	out_failed = 0;
-	*outfile = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	*outfile = open(argv[4],  O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (*outfile < 0)
 	{
 		out_failed = 1;
@@ -76,7 +76,7 @@ static int	spawn_and_wait(int infile, int outfile, char **argv, char **envp)
 		child1(infile, fd, argv[2], envp);
 	pid2 = fork();
 	if (pid2 < 0)
-		error_exit("fork");
+		error_exit("fork");  
 	if (pid2 == 0)
 		child2(outfile, fd, argv[3], envp);
 	close(fd[0]);

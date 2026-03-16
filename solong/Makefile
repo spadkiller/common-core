@@ -6,7 +6,7 @@
 #    By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/26 21:42:03 by gujarry           #+#    #+#              #
-#    Updated: 2026/03/11 11:04:51 by gujarry          ###   ########.fr        #
+#    Updated: 2026/03/11 11:40:40 by gujarry          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS		= solong.c game.c game_window.c\
 			  enemy/ghost.c enemy/ghost_parse.c enemy/ghost_utils.c enemy/ghost_step.c \
 			  get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
 			  libft/ft_strlen.c libft/ft_strdup.c libft/ft_putstr_fd.c libft/ft_bzero.c \
+			  libft/ft_itoa.c \
 			  printf/ft_printf.c printf/ft_.c printf/ft_sec.c
 
 OBJS		= $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 19:55:56 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/11 11:00:44 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/11 11:24:42 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,12 @@ int	load_sprites(t_game *g)
 		return (1);
 	if (load_one(g, &g->sp.ghost, "sprite/ghost.xpm"))
 		return (1);
+
 	if (load_one(g, &g->sp.collect_anim[0], "sprite/collect.xpm"))
 		return (1);
-	if (load_one(g, &g->sp.collect_anim[1], "sprite/collect.xpm"))
+	if (load_one(g, &g->sp.collect_anim[1], "sprite/collect_rot1.xpm"))
+		return (1);
+	if (load_one(g, &g->sp.collect_anim[2], "sprite/collect_rot2.xpm"))
 		return (1);
 	return (0);
 }
