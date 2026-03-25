@@ -6,7 +6,7 @@
 #    By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/26 21:42:03 by gujarry           #+#    #+#              #
-#    Updated: 2026/03/11 11:40:40 by gujarry          ###   ########.fr        #
+#    Updated: 2026/03/25 15:00:14 by gujarry          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 NAME		= so_long
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g3
 RM			= rm -f
 
 MLX_DIR		= minilibx-linux

@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:06:58 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/11 11:48:23 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/25 15:17:53 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ static void	cleanup_game(t_game *g)
 	destroy_sprites(g);
 	if (g->win)
 		mlx_destroy_window(g->mlx, g->win);
+	if (g->mlx)
+	{
+		mlx_destroy_display(g->mlx);
+		free(g->mlx);
+	}
 	free(g->ghosts);
 	g->ghosts = NULL;
 	g->ghost_count = 0;
