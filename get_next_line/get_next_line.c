@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 11:10:53 by gujarry           #+#    #+#             */
-/*   Updated: 2025/11/21 15:29:47 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/03/25 15:31:33 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*save_rest(char *stock)
 		return (free(stock), NULL);
 	new_stock = malloc(sizeof(char) * (ft_strlen(stock) - i + 1));
 	if (!new_stock)
-		return (NULL);
+		return (free(stock), NULL); 
 	i++;
 	j = 0;
 	while (stock[i])
