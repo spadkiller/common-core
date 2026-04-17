@@ -6,7 +6,7 @@
 /*   By: gujarry <gujarry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 09:41:23 by gujarry           #+#    #+#             */
-/*   Updated: 2026/03/14 03:24:56 by gujarry          ###   ########.fr       */
+/*   Updated: 2026/04/15 17:49:41 by gujarry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ static int	spawn_and_wait(int infile, int outfile, char **argv, char **envp)
 		child1(infile, fd, argv[2], envp);
 	pid2 = fork();
 	if (pid2 < 0)
-		error_exit("fork");  
+	{
+		waitpid(pid1, NULL, 0); 
+		error_exit("fork");
+	}
 	if (pid2 == 0)
 		child2(outfile, fd, argv[3], envp);
 	close(fd[0]);
